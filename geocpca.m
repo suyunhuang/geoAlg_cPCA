@@ -1,8 +1,9 @@
 function v_c = geocpca(targetX, BG, NumPCs, alpha,...
     max_iter, tau, beta1, beta2, NN, u_ini)
 
-%% NN: batch size used for approximate gradient in armijofast.m
-%%     default NN=1000
+%% NN: random subset size used for approximate gradient in armijofast.m
+%%     default NN=2000
+%% u_ini: initial PCs
 
 p=size(targetX,2);
 n=size(targetX,1);
@@ -10,23 +11,11 @@ m=size(BG,1);
 method='cayley'; % currently we only have method 'cayley' 
                  % for retraction map from tangent space to manifold
 
-switch nargin
-    case 8
-        u_c  = orth(normrnd(0,1,[p,NumPCs]));  % the initial iteration point
-        NNum=1000; 
-    case 9
-        if(size(NN,1)==1)
-        u_c  = orth(normrnd(0,1,[p,NumPCs]));
-        NNum=NN;
-        else
-            u_c    = NN;
-            NNum=1000;
-        end
-
-    otherwise
-        u_c    = u_ini;   % assign the current point
-        NNum=NN; 
+if nargin <= 8
+        u_c  = orth(normrnd(0,1,[p,NumPCs]));  % random initial 
+        NNum=2000; 
 end
+
 obj_tc = zeros(max_iter,1);
 stepsize_tc = zeros(max_iter,1);
 innerIter_tc = zeros(max_iter,1);
