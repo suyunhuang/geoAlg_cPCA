@@ -13,7 +13,7 @@ method='cayley'; % currently we only have method 'cayley'
 
 if nargin <= 8
         u_c  = orth(normrnd(0,1,[p,NumPCs]));  % random initial 
-        NNum=2000; 
+        NNum=5000; 
 end
 
 obj_tc = zeros(max_iter,1);
