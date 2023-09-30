@@ -2,7 +2,7 @@ function v_c = geocpca(targetX, BG, NumPCs, alpha,...
     max_iter, tau, beta1, beta2, NN, u_ini)
 
 %% NN: random subset size used for approximate gradient in armijofast.m
-%%     default NN=2000
+%%     default NN=5000
 %% u_ini: initial PCs
 
 p=size(targetX,2);
