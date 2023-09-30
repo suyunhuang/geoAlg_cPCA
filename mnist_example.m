@@ -32,7 +32,7 @@ load('mnist.mat');
 [nt,~]  = size(testX);
 NumPCs=150; % number of components
 
-rr= 1; % create large images by pasting rr x rr images
+rr= 2; % create large images by pasting rr x rr images
 % set rr =1,2,3,
 % e.g., rr =2, the enlarged image consists of 2x2 original images with
 % background (2 x 2 backgrounds are randomly drawn from BG database and
@@ -148,7 +148,7 @@ end
 max_iter =30;
 beta1=0.005;beta2=0.9;
 tic
-[u_cpca, l_c] = geocpca(targetX_cent, BG_cent,NumPCs, alpha,...
+u_cpca = geocpca(targetX_cent, BG_cent,NumPCs, alpha,...
     max_iter, 1, beta1, beta2);
 time_our_alg= toc
 
